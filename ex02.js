@@ -25,8 +25,22 @@ buscarInfo()
                 'Nome': `${refeicao.strMeal}`,
                 'ID': `${refeicao.idMeal}`,
                 'Regiao': `${refeicao.strArea}`,
-                'Instrucoes': `${refeicao.strInstructions}`
+                'Instrucoes': `${refeicao.strInstructions}`,
+                'Ingredientes': `${getIngredientes(refeicao)}`
             }
             console.log(infoCompleta);
         })
     })
+
+
+function getIngredientes(receita) {
+    const listaIngredientes = [];
+
+    for(let elemento in receita) {
+        const ingrediente = elemento
+        if(ingrediente.match('strIngredient') && receita[ingrediente]) {
+            listaIngredientes.push(receita[ingrediente])
+        }
+    }
+    return listaIngredientes;
+}
